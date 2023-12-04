@@ -1,2 +1,33 @@
 Design a Django application: An admin site that lets you add, change and delete 
 programming languages.
+
+Go to D drive --> open cmd
+django-admin startproject language_admin
+cd language_admin
+python manage.py startapp languages
+
+languages/models.py -- 
+from django.db import models
+class ProgrammingLanguage(models.Model):
+    name = models.CharField(max_length=50)
+    creator = models.CharField(max_length=50)
+    release_year = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+languages/admin.py --
+from django.contrib import admin
+from .models import ProgrammingLanguage
+admin.site.register(ProgrammingLanguage)
+
+migrations --
+python manage.py makemigrations
+python manage.py migrate
+
+python manage.py createsuperuser
+python manage.py runserver
+Access the Django admin panel at http://127.0.0.1:8000/admin/ and log in with the superuser credentials.
+
+
+
